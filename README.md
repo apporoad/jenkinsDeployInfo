@@ -1,0 +1,2 @@
+# jenkinsDeployInfo
+简单获取文件夹内最新文件内容的小项目
