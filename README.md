@@ -9,7 +9,7 @@
 npm i -g aok.js
 npm i -g cute.curl
 
-aok .
+aok api -s static
 
 cute http://localhost:11540/deploy?node=b2b
 
