@@ -1,0 +1,25 @@
+{
+  "name": "jenkinsdeployinfo",
+  "version": "1.0.0",
+  "description": "简单获取文件夹内最新文件内容的小项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apporoad/jenkinsDeployInfo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apporoad/jenkinsDeployInfo/issues"
+  },
+  "homepage": "https://github.com/apporoad/jenkinsDeployInfo#readme",
+  "dependencies": {
+    "aok.js": "^2.4.1",
+    "lisa.promise": "^2.0.0",
+    "mini.req.js": "^1.2.0",
+    "moment": "^2.29.1"
+  }
+}

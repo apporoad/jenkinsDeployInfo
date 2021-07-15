@@ -1,0 +1,67 @@
+<!-- https://github.com/olifolkerd/tabulator -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>deploy versions</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/tabulator.min.css" />
+        <script src="js/jquery-latest.js"></script>
+        <script src="js/tabulator.min.js"></script>
+    </head>
+    <style>
+        html ,
+        body {
+            height: 100%;
+        }
+    </style>
+    <!--onbeforeunload="btnSave_click()"-->
+    <body>
+        <div id="table"></div>
+    </body>
+</html>
+<script>
+
+	function getData(url) {
+    var returnVal = null
+    $.ajax({
+        type: 'get',
+        url: url,
+        async: false,
+        success: function (data) {
+            returnVal = data
+        },
+        dataType: 'json',
+        error: function (err) {
+            console.log(url)
+            console.log('err:' + JSON.stringify(err))
+        }
+    })
+    return returnVal
+}
+
+    var tabledata = getData('/collect')
+    var table = new Tabulator("#table", {
+	data:tabledata,           //load row data from array
+	layout:"fitColumns",      //fit columns to width of table
+	responsiveLayout:"hide",  //hide columns that dont fit on the table
+	tooltips:true,            //show tool tips on cells
+	addRowPos:"top",          //when adding a new row, add it to the top of the table
+	history:true,             //allow undo and redo actions on the table
+	pagination:"local",       //paginate the data
+	paginationSize:7,         //allow 7 rows per page of data
+	movableColumns:true,      //allow column order to be changed
+	resizableRows:true,       //allow row order to be changed
+	initialSort:[             //set the initial sort order of the data
+		{column:"order", dir:"asc"},
+	],
+	columns:[                 //define the table columns
+        {title:"no.", field:"order", editor:"input"},
+        {title:"部署", field:"deploy", editor:"input"},
+		{title:"项目", field:"name", editor:"input"},
+		{title:"git提交ID", field:"commitId",editor:"input"},
+		{title:"版本号", field:"tempVersion", editor:"input"},
+		{title:"编译时间", field:"fromNow", editor:"input"}
+	],
+});
+</script>
