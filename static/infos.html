@@ -49,19 +49,19 @@
 	addRowPos:"top",          //when adding a new row, add it to the top of the table
 	history:true,             //allow undo and redo actions on the table
 	pagination:"local",       //paginate the data
-	paginationSize:7,         //allow 7 rows per page of data
+	paginationSize:25,         //allow 7 rows per page of data
 	movableColumns:true,      //allow column order to be changed
 	resizableRows:true,       //allow row order to be changed
 	initialSort:[             //set the initial sort order of the data
 		{column:"order", dir:"asc"},
 	],
 	columns:[                 //define the table columns
-        {title:"no.", field:"order", editor:"input"},
-        {title:"部署", field:"deploy", editor:"input"},
-		{title:"项目", field:"name", editor:"input"},
-		{title:"git提交ID", field:"commitId",editor:"input"},
-		{title:"版本号", field:"tempVersion", editor:"input"},
-		{title:"编译时间", field:"fromNow", editor:"input"}
+        {title:"no.", field:"order", editor:"input" ,headerFilter:"input"},
+        {title:"部署", field:"deploy", editor:"input" , headerFilter:"input"},
+		{title:"项目", field:"name", editor:"input",headerFilter:"input"},
+		{title:"git提交ID", field:"commitId",editor:"input",headerFilter:"input"},
+		{title:"版本号", field:"tempVersion", editor:"input",headerFilter:"input"},
+		{title:"编译时间", field:"fromNow", editor:"input",headerFilter:"input"}
 	],
 });
 </script>

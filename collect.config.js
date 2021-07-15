@@ -1,4 +1,5 @@
-{
+
+module.exports ={
     "nodes" : [
         {
             "order" : 0,

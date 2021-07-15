@@ -1,4 +1,4 @@
-var configs = require('../collect.config.json')
+var configs = require('../collect.config.js')
 var lisaP = require('lisa.promise')
 var req = require('mini.req.js')
 var moment = require('moment')
