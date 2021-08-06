@@ -51,7 +51,7 @@
     return returnVal
 }
 
-    var tabledata = getData('/collect?node=' + getQueryVariable('node'))
+    var tabledata = getData('/collect?node=' + getQueryVariable('node') + '&name=' +  getQueryVariable('name') )
     var table = new Tabulator("#table", {
 	data:tabledata,           //load row data from array
 	layout:"fitColumns",      //fit columns to width of table

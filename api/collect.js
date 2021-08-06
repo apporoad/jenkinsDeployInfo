@@ -26,7 +26,10 @@ module.exports = {
 
         var nodes = configs.nodes
         if(params && params.node){
-            nodes = nodes.filter(one=> { return one.name == params.node})
+            nodes = nodes.filter(one=> { return one.deploy.indexOf(params.node) > -1 })
+        }
+        if(params && params.name){
+            nodes = nodes.filter(one=> { return one.name.indexOf(params.name) > -1 })
         }
         LiSAP.assignBatch(async one => {
             var result = Object.assign({},one)
