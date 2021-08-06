@@ -24,6 +24,10 @@ module.exports = {
     "@get": async function(params){
         const LiSAP = lisaP(2)
 
+        var nodes = configs.nodes
+        if(params && params.node){
+            nodes = nodes.filter(one=> { return one.name == params.node})
+        }
         LiSAP.assignBatch(async one => {
             var result = Object.assign({},one)
 
@@ -48,10 +52,14 @@ module.exports = {
                 result.lastVersion = lv
             }
             return result
-        },configs.nodes)
+        },nodes)
         var results = await LiSAP.action()
 
-        results.sort((a,b)=>{ return (a.order || 1) - (b.order || 1)})
-        return results
+        if(results && results.length>0){
+            results.sort((a,b)=>{ return (a.order || 1) - (b.order || 1)})
+            return results
+        }
+        
+        return []
     }
 }
