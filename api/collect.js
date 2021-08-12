@@ -22,15 +22,64 @@ var getDeployLastVersion = function(node){
 
 module.exports = {
     "@get": async function(params){
-        const LiSAP = lisaP(2)
+        const LiSAP = lisaP(5)
 
         var nodes = configs.nodes
-        if(params && params.node){
-            nodes = nodes.filter(one=> { return one.deploy.indexOf(params.node) > -1 })
+        if(params && params.node && params.node !='false'){
+            nodes = nodes.filter(one=> { 
+                if(params.node.indexOf(',') > -1){
+                    var ns = params.node.split(',')
+                    for(var i=0;i<ns.length;i++){
+                        var n = ns[i]
+                        if(n){
+                            if(one.deploy.indexOf(n) > -1){
+                                return true
+                            }
+                        }
+                    }
+                }else{
+                    return one.deploy.indexOf(params.node) > -1 
+                }
+                return false
+            })
         }
-        if(params && params.name){
-            nodes = nodes.filter(one=> { return one.name.indexOf(params.name) > -1 })
+        if(params && params.name && params.name !='false'){
+            nodes = nodes.filter(one=> { 
+                if(params.name.indexOf(',') > -1){
+                    var ns = params.name.split(',')
+                    for(var i=0;i<ns.length;i++){
+                        var n = ns[i]
+                        if(n){
+                            if(one.name.indexOf(n) > -1){
+                                return true
+                            }
+                        }
+                    }
+                }else{
+                    return one.name.indexOf(params.name) > -1 
+                }
+                return false
+            })
         }
+        if(params && params.url && params.url !='false'){
+            nodes = nodes.filter(one=> { 
+                if(params.url.indexOf(',') > -1){
+                    var ns = params.url.split(',')
+                    for(var i=0;i<ns.length;i++){
+                        var n = ns[i]
+                        if(n){
+                            if(one.commitIdUrl.indexOf(n) > -1){
+                                return true
+                            }
+                        }
+                    }
+                }else{
+                    return one.commitIdUrl.indexOf(params.url) > -1 
+                }
+                return false
+            })
+        }
+        
         LiSAP.assignBatch(async one => {
             var result = Object.assign({},one)
 
